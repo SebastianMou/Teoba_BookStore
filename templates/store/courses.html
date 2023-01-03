@@ -1,0 +1,60 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main id="main" data-aos="fade-in">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs">
+    <div class="container">
+      <h2>Categorías</h2>
+      <p>Catálogo de libros electrónicos en texto completo pertenecientes a la bibliografía básica
+        del plan de estudios del nivel bachillerato de la UNAM, ordenados por área temática. <br>
+        Elige el área temática de tu interés:</p>
+    </div>
+  </div><!-- End Breadcrumbs -->
+
+  <br>
+  <div id="botones" class="row" data-aos="zoom-in" data-aos-delay="100">
+    {% for c in categories %}
+    <div class="col-lg-3 col-md-4">
+        <a href="{{ c.get_absolute_url }}">
+          <button id="boton1" class="button button1" onclick="mostrarcocina();">{{ c.name|title }}</button>
+        </a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <br>
+
+  <table class="table container">
+    <thead>
+      <tr>
+        <th scope="col">Titulo</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Disponible</th>
+        <th scope="col">Año</th>
+        <th scope="col">Maestro</th>
+        <th scope="col">Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for x in books %}
+          <tr>
+              <td> <a href="{{ x.get_absolute_url }}">{{ x.title }}</a></td>
+              <td>{{ x.author }}</td>
+              <td>{{ x.in_stock }}</td>
+              <td>{{ x.year }}</td>
+              <td>{{ x.created_by }}</td>
+              <td>{{ x.price }}</td>
+          </tr>
+        </a>
+        {% endfor %}
+    </tbody>
+  </table>
+
+
+</main><!-- End #main -->
+
+{% endblock %}
